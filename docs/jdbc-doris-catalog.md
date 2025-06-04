@@ -39,7 +39,7 @@ You can check the relevant data source configuration in
 [data source properties](https://commons.apache.org/proper/commons-dbcp/configuration.html) for
 more details.
 
-Besides the [common catalog properties](./gravitino-server-config.md#gravitino-catalog-properties-configuration), the Doris catalog has the following properties:
+Besides the [common catalog properties](./gravitino-server-config.md#apache-gravitino-catalog-properties-configuration), the Doris catalog has the following properties:
 
 | Configuration item   | Description                                                                                                                                                                                                                                                                                                                                                                                                      | Default value | Required | Since Version    |
 |----------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------|----------|------------------|
@@ -86,21 +86,21 @@ Please refer to
 
 #### Table column types
 
-| Gravitino Type | Doris Type |
-|----------------|------------|
-| `Boolean`      | `Boolean`  |
-| `Byte`         | `TinyInt`  |
-| `Short`        | `SmallInt` |
-| `Integer`      | `Int`      |
-| `Long`         | `BigInt`   |
-| `Float`        | `Float`    |
-| `Double`       | `Double`   |
-| `Decimal`      | `Decimal`  |
-| `Date`         | `Date`     |
-| `Timestamp`    | `Datetime` |
-| `VarChar`      | `VarChar`  |
-| `FixedChar`    | `Char`     |
-| `String`       | `String`   |
+| Gravitino Type | Doris Type    |
+|----------------|---------------|
+| `Boolean`      | `Boolean`     |
+| `Byte`         | `TinyInt`     |
+| `Short`        | `SmallInt`    |
+| `Integer`      | `Int`         |
+| `Long`         | `BigInt`      |
+| `Float`        | `Float`       |
+| `Double`       | `Double`      |
+| `Decimal`      | `Decimal`     |
+| `Date`         | `Date`        |
+| `Timestamp[p]` | `Datetime[p]` |
+| `VarChar`      | `VarChar`     |
+| `FixedChar`    | `Char`        |
+| `String`       | `String`      |
 
 
 Doris doesn't support Gravitino `Fixed` `Timestamp_tz` `IntervalDay` `IntervalYear` `Union` `UUID` type.

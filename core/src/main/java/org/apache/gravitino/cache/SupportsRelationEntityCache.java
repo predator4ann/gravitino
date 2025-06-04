@@ -43,6 +43,8 @@ public interface SupportsRelationEntityCache {
    * @param relType The relation type to find related entities for
    * @return A list of related entities, or an empty list if none are found
    * @param <E> The class of the related entities
+   * @throws IOException if an I/O error occurs while loading related entities from the underlying
+   *     {@link EntityStore}
    */
   <E extends Entity & HasIdentifier> List<E> getOrLoad(
       NameIdentifier ident, Entity.EntityType type, SupportsRelationOperations.Type relType)
@@ -86,13 +88,17 @@ public interface SupportsRelationEntityCache {
       NameIdentifier ident, Entity.EntityType type, SupportsRelationOperations.Type relType);
 
   /**
-   * Puts a relation between two entities into the cache.
+   * Puts a list of related entities into the cache.
    *
-   * @param srcEntity The source entity
-   * @param destEntity The destination entity
-   * @param relType The relation type
-   * @param <E> The class of the entities
+   * @param ident The name identifier of the entity to cache the related entities for
+   * @param type The type of the entity to cache the related entities for
+   * @param relType The relation type to cache the related entities for
+   * @param entities The list of related entities to cache
+   * @param <E> The class of the related entities
    */
   <E extends Entity & HasIdentifier> void put(
-      E srcEntity, E destEntity, SupportsRelationOperations.Type relType);
+      NameIdentifier ident,
+      Entity.EntityType type,
+      SupportsRelationOperations.Type relType,
+      List<E> entities);
 }

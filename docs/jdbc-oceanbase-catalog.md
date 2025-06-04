@@ -36,7 +36,7 @@ You can pass to a OceanBase data source any property that isn't defined by Gravi
 Check the relevant data source configuration in [data source properties](https://commons.apache.org/proper/commons-dbcp/configuration.html)
 
 If you use a JDBC catalog, you must provide `jdbc-url`, `jdbc-driver`, `jdbc-user` and `jdbc-password` to catalog properties.
-Besides the [common catalog properties](./gravitino-server-config.md#gravitino-catalog-properties-configuration), the OceanBase catalog has the following properties:
+Besides the [common catalog properties](./gravitino-server-config.md#apache-gravitino-catalog-properties-configuration), the OceanBase catalog has the following properties:
 
 | Configuration item   | Description                                                                                                                           | Default value | Required | Since Version    |
 |----------------------|---------------------------------------------------------------------------------------------------------------------------------------|---------------|----------|------------------|
@@ -102,15 +102,16 @@ Refer to [Manage Relational Metadata Using Gravitino](./manage-relational-metada
 | `Double`          | `Double`            |
 | `String`          | `Text`              |
 | `Date`            | `Date`              |
-| `Time`            | `Time`              |
-| `Timestamp`       | `Timestamp`         |
+| `Time[p]`         | `Time[p]`           |
+| `Timestamp_tz[p]` | `Timestamp[p]`      |
+| `Timestamp[p]`    | `Datetime[p]`       |
 | `Decimal`         | `Decimal`           |
 | `VarChar`         | `VarChar`           |
 | `FixedChar`       | `FixedChar`         |
 | `Binary`          | `Binary`            |
 
 :::info
-OceanBase doesn't support Gravitino `Boolean` `Fixed` `Struct` `List` `Map` `Timestamp_tz` `IntervalDay` `IntervalYear` `Union` `UUID` type.
+OceanBase doesn't support Gravitino `Boolean` `Fixed` `Struct` `List` `Map` `IntervalDay` `IntervalYear` `Union` `UUID` type.
 Meanwhile, the data types other than listed above are mapped to Gravitino **[External Type](./manage-relational-metadata-using-gravitino.md#external-type)** that represents an unresolvable data type since 0.6.0-incubating.
 :::
 

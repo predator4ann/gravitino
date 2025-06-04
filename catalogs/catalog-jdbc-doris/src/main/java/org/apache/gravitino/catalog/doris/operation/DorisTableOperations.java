@@ -134,7 +134,7 @@ public class DorisTableOperations extends JdbcTableOperations {
     }
 
     if (distribution.number() != 0) {
-      sqlBuilder.append(" BUCKETS ").append(distribution.number());
+      sqlBuilder.append(" BUCKETS ").append(DorisUtils.toBucketNumberString(distribution.number()));
     }
 
     properties = appendNecessaryProperties(properties);
@@ -794,5 +794,17 @@ public class DorisTableOperations extends JdbcTableOperations {
       String createTableSyntax = result.getString("Create Table");
       return DorisUtils.extractDistributionInfoFromSql(createTableSyntax);
     }
+  }
+
+  @Override
+  public Integer calculateDatetimePrecision(String typeName, int columnSize, int scale) {
+    String upperTypeName = typeName.toUpperCase();
+    if (upperTypeName.equals("DATETIME")) {
+      // DATETIME format: 'YYYY-MM-DD HH:MM:SS' (19 chars) + decimal point + precision
+      return columnSize >= DATETIME_FORMAT_WITH_DOT.length()
+          ? columnSize - DATETIME_FORMAT_WITH_DOT.length()
+          : 0;
+    }
+    return null;
   }
 }
